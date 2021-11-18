@@ -1,51 +1,53 @@
 const QwertyTypos = {
     a: ['q', 'w', 's', 'z'],
     b: ['v', 'g', 'h', 'n'],
-    c: ['x', 'd', 'f', 'v'],
-    d: ['x', 's', 'w', 'e', 'r', 'f', 'v', 'c'],
+    c: ['x', 'd', ' '],
+    d: ['x', 's', 'w', 'e', 'r', 'f', 'c'],
     e: ['w', 's', 'd', 'f', 'r'],
-    f: ['c', 'd', 'e', 'r', 't', 'g', 'b', 'v'],
-    g: ['r', 'f', 'v', 't', 'b', 'y', 'h', 'n'],
-    h: ['b', 'g', 't', 'y', 'u', 'j', 'm', 'n'],
+    f: ['c', 'd', 'e', 'r', 't', 'g', 'v'],
+    g: ['r', 'f', 'v', 't', 'b', 'y', 'h'],
+    h: ['b', 'g', 't', 'y', 'u', 'j', 'n'],
     i: ['u', 'j', 'k', 'l', 'o'],
     j: ['n', 'h', 'y', 'u', 'i', 'k', 'm'],
     k: ['u', 'j', 'm', 'l', 'o'],
-    l: ['p', 'o', 'i', 'k', 'm'],
-    m: ['n', 'h', 'j', 'k', 'l'],
-    n: ['b', 'g', 'h', 'j', 'm'],
+    l: ['p', 'o', 'i', 'k'],
+    m: ['n', 'j', 'k', 'l', ','],
+    n: ['b', 'h', 'j', 'm'],
     o: ['i', 'k', 'l', 'p'],
-    p: ['o', 'l'],
+    p: ['o', 'l', ';'],
     r: ['e', 'd', 'f', 'g', 't'],
-    s: ['q', 'w', 'e', 'z', 'x', 'c'],
+    s: ['q', 'w', 'e', 'z', 'x', 'c', 'a', 'd'],
     t: ['r', 'f', 'g', 'h', 'y'],
     u: ['y', 'h', 'j', 'k', 'i'],
-    v: ['', 'c', 'd', 'f', 'g', 'b'],    
+    v: ['c', 'f', 'g', 'b', ' '],    
     w: ['q', 'a', 's', 'd', 'e'],
-    x: ['z', 'a', 's', 'd', 'c'],
+    x: ['z', 's', 'd', 'c'],
     y: ['t', 'g', 'h', 'j', 'u'],
     z: ['x', 's', 'a'],
-    1: ['q', 'w'],
-    2: ['q', 'w', 'e'],
-    3: ['w', 'e', 'r'],
-    4: ['e', 'r', 't'],
-    5: ['r', 't', 'y'],
-    6: ['t', 'y', 'u'],
-    7: ['y', 'u', 'i'],
-    8: ['u', 'i', 'o'],
-    9: ['i', 'o', 'p'],
-    0: ['o', 'p'],
+    1: ['q', 'w', '2'],
+    2: ['q', 'w', 'e', '1', '3'],
+    3: ['w', 'e', 'r', '2', '4'],
+    4: ['e', 'r', 't', '3', '5'],
+    5: ['r', 't', 'y', '4', '6'],
+    6: ['t', 'y', 'u', '5', '7'],
+    7: ['y', 'u', 'i', '6', '8'],
+    8: ['u', 'i', 'o', '7', '9'],
+    9: ['i', 'o', 'p', '8', '0'],
+    0: ['o', 'p', '9'],
 }
 
 const typo = (sentence, frequencyPercentage = 10, typos = QwertyTypos) => {
     sentence = sentence.split('');
 
-    for (let letter in sentence) {
+    sentence = sentence.map(letter => {
         if (Math.floor(Math.random() * 100000) < frequencyPercentage) {
-            sentence[letter] = letterTypo(sentence[letter], typos);
+            return letterTypo(letter, typos);
+        } else {
+            return letter;
         }
-    }
+    })
 
-    console.log(sentence.join(''));
+    return sentence.join("");
 }
 
 const letterTypo = (letter, typos) => {
@@ -61,4 +63,5 @@ const letterTypo = (letter, typos) => {
 module.exports = {
     QwertyTypos,
     typo,
+    letterTypo,
 }

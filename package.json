@@ -1,0 +1,11 @@
+{
+  "name": "typo-generator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/J4Wx/typos-dot-rest.git",
+  "author": "Jamie Wood <jamie@cool.studio>",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
