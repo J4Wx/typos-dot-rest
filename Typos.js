@@ -42,7 +42,19 @@ const typo = (sentence, frequencyPercentage = 10, typos = QwertyTypos) => {
 
     sentence = sentence.map(letter => {
         if (Math.floor(Math.random() * 100000) < frequencyPercentage) {
-            return letterTypo(letter, typos);
+            const isUpper = letter === letter.toUpperCase();
+
+            if (isUpper) {
+                letter = letter.toLowerCase();
+            }
+
+            const typo = letterTypo(letter, typos);
+
+            if (isUpper) {
+                return typo.toUpperCase();
+            }
+
+            return typo;
         } else {
             return letter;
         }
